@@ -44,7 +44,17 @@ public class Jugador {
     public void getMazo() {
         System.out.println("======== MAZO DEL JUGADOR ========");
         for (int i = 0; i < mazo.size(); i++) {
-            System.out.println(i + " " + mazo.get(i));
+            if (mazo.get(i).getEspecial() == true) {
+                if (mazo.get(i).getColor() == "Negro") {
+                    System.out.println(i + ". " + "Especial - " + mazo.get(i).getTipo());
+                } else {
+                    System.out.println(i + ". " + "Especial - " + mazo.get(i).getTipo() + " " + mazo.get(i).getColor());
+                }
+                
+            } else {
+                System.out.println(i + ". " + mazo.get(i).getValor() + " " + mazo.get(i).getColor());
+            }
+            
         }
         System.out.println("==================================");
     }
@@ -73,5 +83,11 @@ public class Jugador {
      */
     public ArrayList<Cartas> getMazoJugador() {
         return mazo;
+    }
+
+    public void printMazo() {
+        for (int i = 0; i < mazo.size(); i++) {
+            System.out.println(mazo.get(0));
+        }
     }
 }

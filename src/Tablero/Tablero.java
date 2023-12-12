@@ -61,6 +61,16 @@ public class Tablero {
         this.mazo.remove(0);
         this.insertarMazo(cartaActual);
 
+        Jugador jugadorAux;
+
+        for (int i = 0; i < jugadores.size(); i++) {
+            jugadorAux = jugadores.get(i);
+            for (int j = 0; j < 7; j++) {
+                jugadorAux.agregarCarta(mazo.get(0));
+                mazo.remove(0);
+            }
+        }
+
     }
 
     public void mezclarMazo(ArrayList<Cartas> mazoA) {
@@ -83,7 +93,7 @@ public class Tablero {
         return jugadores;
     }
 
-    public void getCartaActual() {
+    public void CartaActual() {
         if (cartaActual.getColor() == "Negro") {
             System.out.println("La primer carta es un " + cartaActual.getTipo());
         } else {
@@ -95,10 +105,26 @@ public class Tablero {
         }
     }
 
+    public Cartas getCartaActual() {
+        return cartaActual;
+    }
+
+    public void setCartaActual(Cartas carta) {
+        this.cartaActual = carta;
+    }
+
     public Cartas getCartaMazo() {
         Cartas cartaAux = mazo.get(0);
         mazo.remove(0);
         return cartaAux;
+    }
+
+    public void printMazo() {
+        Cartas carta;
+        for (int i = 0; i < mazo.size(); i++) {
+            carta = mazo.get(i);
+            System.out.println(carta.getValor() + carta.getColor() + carta.getTipo());
+        }
     }
     
 }

@@ -38,9 +38,11 @@ public class Main {
         }
 
         Tablero tablero = new Tablero(jugadores);
+
+        jugar(tablero);
         }
 
-        public void jugar(Tablero tablero) {
+        public static void jugar(Tablero tablero) {
             System.out.println("======== INICIO ========");
             int stop = 0;
             Scanner scanner = new Scanner(System.in);
@@ -50,14 +52,20 @@ public class Main {
             while (stop == 0) {
                 for (int i = 0; i < tablero.getJugadores().size(); i++) {
                     jugadorActual = players.get(i);
-                    option = menu(jugadorActual, tablero);
-                    
-
+                    tablero.CartaActual();
+                    System.out.println("Mazo del jugador: ");
+                    jugadorActual.getMazo();
+                    menu(jugadorActual, tablero);
+                    System.out.println("Mazo del jugador: ");
+                    jugadorActual.getMazo();
+                    System.out.println("Mazo del juego: ");
+                    tablero.printMazo();
+                    tablero.CartaActual();
                 }
             }
         }
 
-        public int menu(Jugador jugadorActual, Tablero tablero) {
+        public static int menu(Jugador jugadorActual, Tablero tablero) {
             Scanner scanner = new Scanner(System.in);
             int option = 0;
             int cartaSeleccionada = -1;
@@ -83,7 +91,19 @@ public class Main {
                         cartaSeleccionada = scanner.nextInt();
                     }
                     cartaAct = jugadorActual.quitarCarta(cartaSeleccionada);
-                    
+                    if (cartaAct.getColor() == "Negro") {
+                        System.out.println("Una carta especial ha sido lanzada!");
+                        
+                    } else if (tablero.getCartaActual().getColor() == cartaAct.getColor()) {
+                        System.out.println("La jugada es correcta!");
+                        tablero.setCartaActual(cartaAct);
+                        tablero.insertarMazo(cartaAct);
+                    } else {
+                        System.out.println("Cometiste un error en el lanzamiento de tu carta, los tipos no coinciden!. Robas 1");
+                        jugadorActual.agregarCarta(cartaAct);
+                        jugadorActual.agregarCarta(tablero.getCartaMazo());
+                    }
+                    break;
                 case 3:
                     jugadorActual.agregarCarta(tablero.getCartaMazo());
                     break;
