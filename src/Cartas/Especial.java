@@ -13,7 +13,7 @@ public class Especial extends Cartas {
      * @param especial Indica si es especial o no. Boolean
      * @param tipo Indica que tipo de carta especial es. String
      */
-    public Especial(Boolean especial, String tipo) {
-        super("Negro", true, 0, tipo);
+    public Especial(String tipo) {
+        super("Negro", true, -1, tipo);
     }  
 }

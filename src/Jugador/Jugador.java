@@ -61,7 +61,17 @@ public class Jugador {
      * Remueve del mazo la carta presente en la posicion indicada por indice y la coloca en el mazo de jugada general
      * @param indice Entero que indica una posicion del arrayList
      */
-    public void quitarCarta(int indice) {
+    public Cartas quitarCarta(int indice) {
+        Cartas carta = mazo.get(indice);
         mazo.remove(indice);
+        return carta;
+    }
+
+    /**
+     * Retorna el mazo del jugador
+     * @return ArrayList con las Cartas del jugador
+     */
+    public ArrayList<Cartas> getMazoJugador() {
+        return mazo;
     }
 }
